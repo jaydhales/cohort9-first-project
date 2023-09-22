@@ -1,13 +1,23 @@
 * {
-    background-color: #999;
+    background-color: rgb(253, 236, 187);
 }
-.todo-wrapper {
-    width: 50rem;
+.App {
+    width: 54rem;
     margin: 4rem auto;
 }
 
 .todo {
     margin: 0.8rem 0;
+}
+
+.todo-input {
+    width: max-content;
+    margin: 0 auto;
+}
+
+.todo-input input {
+    padding: 12px;
+    width: 30rem;
 }
 
 .todo-title {
@@ -18,4 +28,9 @@
 .checked {
     text-decoration: line-through;
     color: red;
+}
+
+button {
+    padding: 12px;
+    margin: 4px;
 }
