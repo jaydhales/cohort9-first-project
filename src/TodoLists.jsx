@@ -1,12 +1,15 @@
 import TodoItem from './TodoItem';
-import React, { useContext } from "react";
-import { TodoContext } from "./Contexts/TodoContext";
-const TodoLists = () => {
-   const { todos } = useContext(TodoContext);
-   return <ul>
-      {!!todos.length && todos.map(
-         todo => <TodoItem todo={todo} key={todo.id} />
-      )}
+import React from "react";
+
+const TodoLists = ({ todos, emptyMessage }) => {
+
+   return <ul className='grid gap-4'>
+      {!!todos.length ?
+         todos.map(
+            todo => <TodoItem todo={todo} key={todo.id} />
+         ) :
+         <p className='font-semibold text-2xl text-center my-4'>{emptyMessage}</p>
+      }
    </ul>
 }
 

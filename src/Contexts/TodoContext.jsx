@@ -1,11 +1,16 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
 
 export const TodoContext = createContext(null);
+
 
 export const TodoProvider = ({ children }) => {
     const [todos, setTodos] = useState([]);
     const [editId, setEditId] = useState(null);
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState('');
+    const completedTodos = useMemo(() => todos.filter(todo => todo.completed), [todos]);
+    const runningTodos = useMemo(() => todos.filter(todo => !todo.completed), [todos]);
+    const [currentTab, setCurrentTab] = useState("all");
+    const tabs = ["all", "completed", "running"];
 
     useEffect(() => {
         let canceled = false;
@@ -37,7 +42,7 @@ export const TodoProvider = ({ children }) => {
 
     const handleEdit = (e) => {
         const newTodos = todos.map((todo) =>
-            todo.id === editId ? { ...todo, title: e.target.value } : todo
+            todo.id === editId ? { ...todo, title: e.target.value, completed: false } : todo
         );
         setTodos(newTodos);
     };
@@ -57,6 +62,8 @@ export const TodoProvider = ({ children }) => {
         <TodoContext.Provider value={{
             todos,
             setTodos,
+            completedTodos,
+            runningTodos,
             inputValue,
             setInputValue,
             editId,
@@ -64,7 +71,10 @@ export const TodoProvider = ({ children }) => {
             handleAddTodo,
             handleDelete,
             handleCheck,
-            handleEdit
+            handleEdit,
+            currentTab,
+            setCurrentTab,
+            tabs
         }}>
             {children}
         </TodoContext.Provider>
