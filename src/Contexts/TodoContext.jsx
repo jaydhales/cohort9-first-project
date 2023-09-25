@@ -38,6 +38,7 @@ export const TodoProvider = ({ children }) => {
     const handleDelete = (id) => {
         const newArray = todos.filter((todo) => todo.id !== id);
         setTodos(newArray);
+        setEditId(null)
     };
 
     const handleEdit = (e) => {
