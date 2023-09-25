@@ -4,7 +4,7 @@ import { TodoContext } from "./Contexts/TodoContext";
 const TodoItem = ({ todo }) => {
    const { handleEdit, handleCheck, editId, setEditId, handleDelete } = useContext(TodoContext);
    const { id, title, completed } = todo;
-   return <li className={`todo bg-white/20 ${completed && "bg-green-600 bg-opacity-70"} py-3 px-2 rounded-md shadow  shadow-gray-500 flex items-center gap-2 relative overflow-hidden`}>
+   return <li className={`todo  py-3 px-2 rounded-md shadow  shadow-gray-500 flex items-center gap-2 relative overflow-hidden ${completed ? "bg-green-600 bg-opacity-70" :"bg-white/20"}`}>
 
       {(!!editId && editId !== id) && <i className="w-full h-full bg-gray-500 bg-opacity-30 absolute top-0 left-0" />}
       {editId !== id && <input type="checkbox" checked={completed} onChange={() => handleCheck(id)} className="w-6 h-6" />}
