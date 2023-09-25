@@ -12,12 +12,12 @@ const TodoItem = ({ todo }) => {
          {title}
       </span>}
       <div className="flex gap-2">
-         {editId === id ? <button onClick={() => setEditId(null)} className="hover:bg-[#00ff0041] p-1 rounded w-8 h-8 hover:shadow-md hover:shadow-green-600" disabled={title.length < 3}>
+         {editId === id ? <button onClick={() => setEditId(null)} className="hover:bg-[#00ff0041] p-1 rounded w-8 h-8 hover:shadow-md hover:shadow-green-600 disabled:opacity-50" disabled={title.length < 3}>
             ✅
          </button> : <button className="hover:bg-[#00ff0041] p-1 rounded w-8 h-8 hover:shadow-md hover:shadow-green-600" onClick={() => setEditId(id)}>
             ✏️
          </button>}
-         <button className="hover:bg-[#ff000038] p-1 rounded w-8 h-8 hover:shadow-md hover:shadow-red-500" onClick={() => handleDelete(id)}>
+         <button className="hover:bg-[#ff000038] flex-1 p-1 rounded w-8 h-8 hover:shadow-md hover:shadow-red-500  disabled:opacity-50" onClick={() => handleDelete(id)} disabled={title.length < 3}>
             🗑️
          </button>
       </div>
